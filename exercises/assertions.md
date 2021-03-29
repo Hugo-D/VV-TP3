@@ -67,3 +67,5 @@ Scenarios:
   ```
 
 4. In JUnit 4, an exception was expected using the `@Test` annotation, while in JUnit 5 there is a special assertion method `assertThrows`. In your opinion, what are the advantages of this new way of checking expected exceptions?
+
+The first advantage is that it increases the readability of the code and simplifies the writting of such rules. The second one is that this exception can be checked at a specific part of the code, inside a specific block of the code. The last advantage we can see is that with the JUnit4 annotation, we can't handle several different exceptions in the same test. But because a JUnit test is supposed atomic, it isn't wise to test several exception throws.
