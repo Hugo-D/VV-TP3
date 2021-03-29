@@ -34,4 +34,36 @@ Scenarios:
   ```
 3. In classes we saw that `fail` is useful to mark code that should not be executed because an exception was expected before. Find other uses for `fail`. Explain the use case and add an example.
 
+* `fail` can be used in a test as a **TODO** mark, where we left the test implementation at:
+  ```java
+  @Test
+  public void myUnfinishedTest() {
+    // ... do stuff ...
+    // TODO finish test
+    fail("Test implementation not finished yet");
+  }
+  ```
+* It can also be used as a timeout check: 
+  ```java
+  if ( !latch.await(5, TimeUnit.SECONDS) ) {
+    fail("No response after 5s");
+  }
+  ```
+* Or it can be used as a precondition testing:
+  ```java
+  @Before
+  public void init() {
+      // ... do stuff ... 
+      obj = new Object();
+  }
+
+  @Test
+  public void testObjectManipulation() {
+      if(obj == null) {
+          fail("obj should not be null");
+       }
+      // ... do actual testing part ...
+  }
+  ```
+
 4. In JUnit 4, an exception was expected using the `@Test` annotation, while in JUnit 5 there is a special assertion method `assertThrows`. In your opinion, what are the advantages of this new way of checking expected exceptions?
