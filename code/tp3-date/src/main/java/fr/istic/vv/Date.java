@@ -51,13 +51,6 @@ class Date implements Comparable<Date> {
     	if(isLeapYear(year)) {
     		daysPerMonth[1] = 29;
     	}
-    	
-    	String str="";
-    	for(int i : daysPerMonth) {
-    		str+=" "+i;
-    	}
-    	System.err.println(str);
-    	System.err.println(daysPerMonth[1]);
     	if( 1 <= month && month <= 12) {
     		return 1 <= day && day <= daysPerMonth[month-1];    		
     	}else {
