@@ -14,11 +14,10 @@ public class StringUtils {
     	return -1;
     }
     
-    private static boolean isBalancedIter(String str) {
+	private static Boolean isBalancedIter(String str) {
     	LinkedList<Character> toClose = new LinkedList<Character>();
     	char[] openSymb = {'(','{','['};
     	char[] closeSymb = {')','}',']'};
-    	int counter = 1;
     	int i=0;
         while(i<str.length()) {
         	char iChar = str.charAt(i);
@@ -28,15 +27,13 @@ public class StringUtils {
         			// ----*----
         			str = str.substring(i+1);
         			i = -1;
-        			counter++;
         			// ----*----
-        		} else { return (Boolean) null; }
+        		} else { return null; }
         	} else if(isAt(iChar, openSymb) != -1) {
         		toClose.addFirst(closeSymb[isAt(iChar,openSymb)]);
         		// ----*----
         		str = str.substring(i+1);
         		i = -1;
-        		counter++;
         		// ----*----
         	}
         	++i;
@@ -44,7 +41,7 @@ public class StringUtils {
         return true;
     }
 
-    public static boolean isBalanced(String str) {
+    public static Boolean isBalanced(String str) {
     	return isBalancedIter(str);
     }
 

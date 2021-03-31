@@ -3,7 +3,6 @@ package fr.istic.vv;
 import org.junit.jupiter.api.Test;
 
 import static fr.istic.vv.StringUtils.isBalanced;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.LinkedList;
@@ -22,7 +21,7 @@ class StringUtilsTest {
     @Test
     public void Test_isBalanced_basicFalse() {
         String str = ")(";
-        assertFalse(isBalanced(str));
+        assertEquals(isBalanced(str), null);
     }
     @Test
     public void Test_isBalanced_multipleImbrications_True() {
@@ -33,7 +32,7 @@ class StringUtilsTest {
     @Test
     public void Test_isBalanced_multipleImbricationsANDText_False() {
         String str = "( ( no rien de rien ( je ne regrette (rien  ) ) ) ) )";
-        assertFalse(isBalanced(str));
+        assertEquals(isBalanced(str), null);
     }
     @Test
     public void Test_isBalanced_sameLevelImbrications_True() {
@@ -85,12 +84,46 @@ class StringUtilsTest {
     	return str.toString();
     }
     
+    private static String generateFalseString() {
+    	StringBuffer str = new StringBuffer();
+    	LinkedList<Character> toClose = new LinkedList<Character>();
+    	int nbIter = (int)(Math.random()*100)+300;
+    	int i=0;
+    	while(i< nbIter || toClose.isEmpty()) {
+    		if(Math.random() > 0.67) {
+    			int iSymb = (int)(Math.random()*3);
+    			if(Math.random()>0.25) {    				
+    				str.append(closeSymb[iSymb]);
+    				if(!toClose.isEmpty() && toClose.getFirst() == closeSymb[iSymb]) {
+    					toClose.removeFirst();
+    				}
+    			} else {
+    				str.append(openSymb[iSymb]);
+    				toClose.addFirst(closeSymb[iSymb]);
+    			}
+    		} else {
+    			str.append(generateRandomChar());
+    		}
+    		++i;
+    	}
+    	return str.toString();
+    }
+    
     @Test
-    public void Test_isBalanced_generator() {
+    public void Test_isBalanced_generator_valide() {
     	int nbIter=1000;
     	for(int i=0; i<nbIter; ++i) {
     		String str = generateValideString();
-    		assertTrue(str,isBalanced(str));
+    		assertTrue(isBalanced(str));
+    	}
+    }
+    
+    @Test
+    public void Test_isBalanced_generator_false() {
+    	int nbIter=1000;
+    	for(int i=0; i<nbIter; ++i) {
+    		String str = generateFalseString();
+    		assertEquals(isBalanced(str), null);
     	}
     }
     
@@ -117,7 +150,7 @@ class StringUtilsTest {
                 str.append(']');
             }
         }
-        assertTrue(str.toString(),isBalanced(str.toString()));
+        assertTrue(isBalanced(str.toString()));
     }
 
 }
