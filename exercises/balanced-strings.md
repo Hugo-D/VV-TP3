@@ -26,3 +26,4 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 
 ## Answer
 
+1. We coded generators responsible for creating valide strings, one generator generates a sequence of ASCII characters and grouping symbols to match the requirements, another generator only generates grouping symbols. We have one last generator responsible for generating false strings, which don't match the requirements.
