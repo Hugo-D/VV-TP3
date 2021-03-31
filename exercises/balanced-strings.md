@@ -55,3 +55,7 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
         </executions>
     </plugin>
     ```
+
+3. We ran over all the code and created simple test cases for every single condition we met in the source code. We observed that without the implementation of those simple tests, way simpler than the generated random valide and false strings, we would have missed an error in our implementation of the solution.
+
+4. 
