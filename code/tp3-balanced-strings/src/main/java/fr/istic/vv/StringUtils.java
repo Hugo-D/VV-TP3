@@ -21,7 +21,6 @@ public class StringUtils {
     	int counter = 1;
     	int i=0;
         while(i<str.length()) {
-        	//System.out.println(counter + " :\t" + str + "\t" + i);
         	char iChar = str.charAt(i);
         	if(isAt(iChar,closeSymb) != -1) {
         		if(!toClose.isEmpty() && iChar == toClose.getFirst()) {
@@ -31,7 +30,7 @@ public class StringUtils {
         			i = -1;
         			counter++;
         			// ----*----
-        		} else { return false; }
+        		} else { return (Boolean) null; }
         	} else if(isAt(iChar, openSymb) != -1) {
         		toClose.addFirst(closeSymb[isAt(iChar,openSymb)]);
         		// ----*----
@@ -46,7 +45,6 @@ public class StringUtils {
     }
 
     public static boolean isBalanced(String str) {
-    	//return isBalancedRecu(str, new LinkedList<Character>());
     	return isBalancedIter(str);
     }
 
