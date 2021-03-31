@@ -1,8 +1,12 @@
 package fr.istic.vv;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 class Date implements Comparable<Date> {
 	
-	private class DateNotValidException extends Exception {
+	public class DateNotValidException extends Exception {
 		/**
 		 * Je sais pas ce que c'est, mais Eclipse m'a demandé de rajouter ça pour enlever un Warning
 		 */
@@ -26,6 +30,7 @@ class Date implements Comparable<Date> {
     	m_day = day;
     	m_month = month;
     	m_year = year;
+    	m_daysPerMonth = new int[12];
     	for(int i=0; i<12; ++i) {
     		if((i % 2 == 0 && i <= 6) || (i % 2 != 0 && i > 6)) {
     			m_daysPerMonth[i] = 31;
@@ -46,7 +51,18 @@ class Date implements Comparable<Date> {
     	if(isLeapYear(year)) {
     		daysPerMonth[1] = 29;
     	}
-    	return 1 <= day && day <= daysPerMonth[month-1];
+    	
+    	String str="";
+    	for(int i : daysPerMonth) {
+    		str+=" "+i;
+    	}
+    	System.err.println(str);
+    	System.err.println(daysPerMonth[1]);
+    	if( 1 <= month && month <= 12) {
+    		return 1 <= day && day <= daysPerMonth[month-1];    		
+    	}else {
+    		return false;
+    	}
     }
 
     public static boolean isLeapYear(int year) {
