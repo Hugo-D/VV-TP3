@@ -38,7 +38,8 @@ public class StringUtils {
         	}
         	++i;
         }
-        return true;
+        if(!toClose.isEmpty()) return null;
+        else return true;
     }
 
     public static Boolean isBalanced(String str) {

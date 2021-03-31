@@ -21,7 +21,7 @@ class StringUtilsTest {
     @Test
     public void Test_isBalanced_basicFalse() {
         String str = ")(";
-        assertEquals(isBalanced(str), null);
+        assertEquals(null, isBalanced(str));
     }
     @Test
     public void Test_isBalanced_multipleImbrications_True() {
@@ -32,7 +32,7 @@ class StringUtilsTest {
     @Test
     public void Test_isBalanced_multipleImbricationsANDText_False() {
         String str = "( ( no rien de rien ( je ne regrette (rien  ) ) ) ) )";
-        assertEquals(isBalanced(str), null);
+        assertEquals(null, isBalanced(str));
     }
     @Test
     public void Test_isBalanced_sameLevelImbrications_True() {
@@ -43,6 +43,48 @@ class StringUtilsTest {
     public void Test_isBalanced_complexImbrications_True() {
         String str = "({[()()][()()]})";
         assertTrue(isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_elseIf() {
+    	String str = "("; 
+    	assertEquals(null, isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_else() {
+    	String str = "a"; 
+    	assertTrue(isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_if_else() {
+    	String str = "]"; 
+    	assertEquals(null, isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_if_if_1() {
+    	String str = "(]"; 
+    	assertEquals(null, isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_if_if_2() {
+    	String str = "()"; 
+    	assertTrue(isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_ifEnd() {
+    	String str = "({{([([[]{}])"; 
+    	assertEquals(null, isBalanced(str));
+    }
+    
+    @Test
+    public void Test_isBalanced_BaseChoiceCoverage_ElseEnd() {
+    	String str = "({{([([[]{}])])}})"; 
+    	assertTrue(isBalanced(str));
     }
     
     private static boolean isIn(int cAscii, int[] forbiddenAscii) {
@@ -123,7 +165,7 @@ class StringUtilsTest {
     	int nbIter=1000;
     	for(int i=0; i<nbIter; ++i) {
     		String str = generateFalseString();
-    		assertEquals(isBalanced(str), null);
+    		assertEquals(null, isBalanced(str));
     	}
     }
     
