@@ -27,3 +27,31 @@ Use the project in [tp3-balanced-strings](../code/tp3-balanced-strings) to compl
 ## Answer
 
 1. We coded generators responsible for creating valide strings, one generator generates a sequence of ASCII characters and grouping symbols to match the requirements, another generator only generates grouping symbols. We have one last generator responsible for generating false strings, which don't match the requirements.
+
+2. We added the JaCoCo plugin to create a coverage report and we reach a 100% coverage with our tests following the report's figures.
+    ```xml
+    <!-- Ajout de JaCoCo -->
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.6</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+            </execution>
+            <!--  attached to Maven test phase  -->
+            <execution>
+                <id>report</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>target/jacoco-report</outputDirectory>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+    ```
